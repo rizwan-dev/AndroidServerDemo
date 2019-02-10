@@ -1,6 +1,9 @@
 package com.riztech.webservicedemo.view;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
 
 import com.riztech.webservicedemo.R;
 import com.riztech.webservicedemo.models.Employee;
@@ -14,6 +17,7 @@ import retrofit2.Response;
 public class SearchActivity extends BaseActivity {
 
     ApiInterface apiInterface;
+    EditText edtEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,12 @@ public class SearchActivity extends BaseActivity {
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
+        initializeView();
+
+    }
+
+    private void initializeView() {
+        edtEmployee = findViewById(R.id.edtEmployee);
     }
 
     public void searchEmployee(final String empId) {
@@ -42,6 +52,14 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void showDataOnScreen(Employee employee) {
+
+    }
+
+    public void search(View view) {
+        String empId = edtEmployee.getText().toString().trim();
+        if (!TextUtils.isEmpty(empId)) {
+            searchEmployee(empId);
+        }
 
     }
 }
