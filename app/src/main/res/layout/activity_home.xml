@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".view.HomeActivity">
+
+
+    <Button
+        android:onClick="viewAll"
+        android:id="@+id/btnViewAll"
+        android:text="View All"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="search"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnSearch"
+        android:text="Search"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="add"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnAdd"
+        android:text="Add"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnUpdate"
+        android:text="Update"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
