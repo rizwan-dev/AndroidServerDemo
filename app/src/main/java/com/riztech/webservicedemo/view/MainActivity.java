@@ -1,10 +1,14 @@
 package com.riztech.webservicedemo.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
+import com.riztech.webservicedemo.EmployeeListAdapter;
 import com.riztech.webservicedemo.R;
 import com.riztech.webservicedemo.models.BaseResponse;
 import com.riztech.webservicedemo.models.Employee;
@@ -21,6 +25,7 @@ public class MainActivity extends BaseActivity {
 
     ApiInterface apiInterface;
     ProgressBar progress;
+    RecyclerView rvEmployeeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class MainActivity extends BaseActivity {
 
     private void initializeView() {
         progress = findViewById(R.id.progress);
+        rvEmployeeList = findViewById(R.id.rvEmployeeList);
     }
 
     private void getDataFromServer() {
@@ -44,7 +50,6 @@ public class MainActivity extends BaseActivity {
                 progress.setVisibility(View.GONE);
                 List<Employee> employees = response.body();
                 String responseJson = new Gson().toJson(employees);
-                toast(responseJson);
                 showDataOnRecyclerView(employees);
             }
 
@@ -57,6 +62,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showDataOnRecyclerView(List<Employee> employees) {
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        rvEmployeeList.setLayoutManager(layoutManager);
+
+        rvEmployeeList.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+
+        EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(employees);
+        rvEmployeeList.setAdapter(employeeListAdapter);
 
 
     }
