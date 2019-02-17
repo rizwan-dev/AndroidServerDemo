@@ -1,9 +1,8 @@
 package com.riztech.webservicedemo.view;
 
-import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.riztech.webservicedemo.R;

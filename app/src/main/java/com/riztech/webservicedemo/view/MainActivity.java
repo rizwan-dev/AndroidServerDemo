@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import com.google.gson.Gson;
 import com.riztech.webservicedemo.EmployeeListAdapter;
 import com.riztech.webservicedemo.R;
+import com.riztech.webservicedemo.listeners.EmployeeListener;
 import com.riztech.webservicedemo.models.BaseResponse;
 import com.riztech.webservicedemo.models.Employee;
 import com.riztech.webservicedemo.service.ApiClient;
@@ -21,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements EmployeeListener {
 
     ApiInterface apiInterface;
     ProgressBar progress;
@@ -70,7 +71,7 @@ public class MainActivity extends BaseActivity {
         rvEmployeeList.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
 
-        EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(employees);
+        EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(employees, this);
         rvEmployeeList.setAdapter(employeeListAdapter);
 
 
@@ -93,5 +94,10 @@ public class MainActivity extends BaseActivity {
                 toast(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onEmployeeDelete(int employeeId) {
+        deleteEmployee(String.valueOf(employeeId));
     }
 }
