@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.riztech.webservicedemo.R;
+import com.riztech.webservicedemo.models.BaseResponse;
 import com.riztech.webservicedemo.models.Employee;
 import com.riztech.webservicedemo.service.ApiClient;
 import com.riztech.webservicedemo.service.ApiInterface;
@@ -56,5 +57,26 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showDataOnRecyclerView(List<Employee> employees) {
+
+
+    }
+
+    public void deleteEmployee(String empId) {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<BaseResponse> call = apiInterface.deleteEmployee(empId);
+
+        call.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                BaseResponse baseResponse = response.body();
+                toast(baseResponse.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                toast(t.getMessage());
+            }
+        });
     }
 }
